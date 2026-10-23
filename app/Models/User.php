@@ -14,20 +14,19 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
-    
-
-    
-    
+    //[
+    //  'name' => 'John Doe',
+    //  'email' => 'john@doe',
+    //  'password' => 'secret',
+    //  'is_admin' => true, !usuario nao tem controle so do que ta em fillable
+    //]
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
