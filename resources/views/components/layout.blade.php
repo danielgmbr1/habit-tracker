@@ -12,7 +12,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class="bg-[#FFEDD6]">
     {{-- HEADER --}}
     <x-header/>
 

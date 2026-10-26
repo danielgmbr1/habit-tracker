@@ -1,5 +1,5 @@
-<footer class="bg-white border-t border-2">
+<footer class="bg-white border-t border-2 text-center p-2">
     <p>
-        Criado por Daniel Gama. O codigo fonte esta disponivel no <a href="https://github.com/danielgmbr1/habit-tracker" class="underlineff">Github.</a>"
+        Criado por Daniel Gama. O codigo fonte esta disponivel no <a href="https://github.com/danielgmbr1/habit-tracker" class="underlineff">Github.</a>
     </p>
 </footer>
