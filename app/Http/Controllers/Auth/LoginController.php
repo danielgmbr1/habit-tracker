@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,14 +22,27 @@ class LoginController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        if(Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
-        } else {
-            return back()->withErrors([
-                'email' => 'O email ou senha estão incorretos.',
-            ]);
+            return redirect()->intended('/dashboard');
         }
+
+        return back()->withErrors([
+
+            'email' => 'O email ou senha estão incorretos.',
+
+        ]);
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

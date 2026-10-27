@@ -7,7 +7,20 @@
 
     {{-- GITHUB --}}
     <div>
-        GitHub   
+        GitHub
+        
+        @auth
+            <a href="/login" class="bg-white p-2 border-2">
+                Sair
+            </a>
+        @endauth
+
+        @guest
+            <a href="/login" class="bg-white p-2 border-2">
+                Login
+            </a>
+        @endguest
+
     </div>
 
 </header>
