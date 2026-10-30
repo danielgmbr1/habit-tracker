@@ -27,4 +27,13 @@ class LoginRequest extends FormRequest
             'password' => 'required|min:6|max:60',
         ];
     }
+
+    public function rules(): array
+    {
+
+      return [
+            'email' => 'required|email',
+            'password' => 'required|min:6|max60',
+      ];
+    }
 }

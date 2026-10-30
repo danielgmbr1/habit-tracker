@@ -10,38 +10,38 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    //GET /login
-    public function index()
-    {
-        return view('login');
+  //GET /login
+  public function index()
+  {
+    return view('login');
+  }
+
+  public function authenticate(LoginRequest $request)
+  {
+    $credentials = request()->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+      $request->session()->regenerate();
+
+      return redirect()->intended(route('site.dashboard'));
     }
 
-    public function authenticate(LoginRequest $request)
-    {
-        $credentials = request()->only('email', 'password');
+    return back()->withErrors([
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+      'email' => 'Credenciais inválidas.',
 
-            return redirect()->intended(route('site.dashboard'));
-        }
+    ]);
+  }
 
-        return back()->withErrors([
+  public function logout(Request $request): RedirectResponse
+  {
+    Auth::logout();
 
-            'email' => 'O email ou senha estão incorretos.',
+    $request->session()->invalidate();
 
-        ]);
-    }
+    $request->session()->regenerateToken();
 
-    public function logout(Request $request): RedirectResponse
-    {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect(route('site.index'));
-        //speed realf
-    }
+    return redirect(route('site.index'));
+    //speed realf
+  }
 }
